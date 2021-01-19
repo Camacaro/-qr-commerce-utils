@@ -1,6 +1,6 @@
-import Logger from './logger';
+import Logger from './loggers';
 import cleanCharacters from './format';
-import { response, responseError } from './reponse';
+import { response, responseError } from './response';
 
 export {
   Logger,

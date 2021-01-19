@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const cleanCharacters = (string) => {
   let clean = string;
   const replaces = [
@@ -75,4 +77,20 @@ const cleanCharacters = (string) => {
   return clean;
 };
 
-module.exports = cleanCharacters;
+const dateFormat = (type) => {
+  switch (type) {
+    case 'day':
+      return moment(new Date()).format('DD');
+    case 'month':
+      return moment(new Date()).format('MM');
+    case 'year':
+      return moment(new Date()).format('YYYY');
+    default:
+  }
+  return null;
+};
+
+module.exports = {
+  cleanCharacters,
+  dateFormat
+};

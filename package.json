@@ -40,31 +40,21 @@
     "npm": ">=6.13.0",
     "yarn": ">=1.20.0"
   },
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://u-payments.pkgs.visualstudio.com/3057c6cc-3759-41df-bdb1-39dc7d5795f2/_packaging/u-pay-switch-feed/npm/registry/"
-  },
   "contributors": [
-    "Daniel Valenzuela <daniel.valenzuela@u-payments.com>",
-    "Daniel Torres <daniel.torres@u-payments.com>",
-    "Jesus Camacaro <jesus.camacaro@u-payments.com>"
+    "Jesus Camacaro <jesus.alejandr@gmail.com>"
   ],
   "license": "Apache-2.0",
-  "homepage": "https://www.u-payments.com",
   "repository": {
     "type": "GIT",
-    "url": "https://u-payments.visualstudio.com/PM%20-%20Switch/_git/u-pay-switch-schemas"
+    "url": "git@github.com:Camacaro/qr-commerce-utils.git"
   },
   "bugs": {
-    "email": "bugs@u-payments.com"
+    "email": "jesus.alejandr@gmail.com"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.4",
     "debug": "^4.1.1",
-    "dotenv": "^8.2.0",
     "moment": "^2.27.0",
-    "sequelize": "^6.2.4",
-    "tedious": "^8.3.0",
     "winston": "^3.3.3"
   }
 }

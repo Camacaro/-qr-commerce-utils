@@ -11,7 +11,6 @@ module.exports = {
     'comma-dangle': ['error', {
       arrays: 'never'
     }],
-    strict: 'off',
-    'linebreak-style': ['error', 'windows']
+    strict: 'off'
   }
 };
