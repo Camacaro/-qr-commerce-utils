@@ -1,0 +1,70 @@
+{
+  "name": "@qr-commerce/utils",
+  "version": "0.1.1",
+  "description": "QR Commerce utils",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "gulp",
+    "audit": "npm audit",
+    "lint": "eslint ."
+  },
+  "pre-commit": [
+    "lint",
+    "audit",
+    "test"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-security": "^1.4.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=10.9.0",
+    "npm": ">=6.13.0",
+    "yarn": ">=1.20.0"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://u-payments.pkgs.visualstudio.com/3057c6cc-3759-41df-bdb1-39dc7d5795f2/_packaging/u-pay-switch-feed/npm/registry/"
+  },
+  "contributors": [
+    "Daniel Valenzuela <daniel.valenzuela@u-payments.com>",
+    "Daniel Torres <daniel.torres@u-payments.com>",
+    "Jesus Camacaro <jesus.camacaro@u-payments.com>"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://www.u-payments.com",
+  "repository": {
+    "type": "GIT",
+    "url": "https://u-payments.visualstudio.com/PM%20-%20Switch/_git/u-pay-switch-schemas"
+  },
+  "bugs": {
+    "email": "bugs@u-payments.com"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.10.4",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "moment": "^2.27.0",
+    "sequelize": "^6.2.4",
+    "tedious": "^8.3.0",
+    "winston": "^3.3.3"
+  }
+}
