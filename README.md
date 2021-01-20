@@ -408,3 +408,7 @@ To build this project, just run `gulp` and it will generate a new version of the
 
 # Tests
 _TODO_
+
+sudo npm link
+
+sudo npm link @qr-commerce/utils

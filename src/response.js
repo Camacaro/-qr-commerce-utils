@@ -11,7 +11,7 @@
  */
 // const httpError = require('./http/http_error');
 const httpStatus = require('./http/http_status');
-const Logger = require('./loggers');
+const Logger = require('./logger');
 
 const logger = new Logger('response');
 
