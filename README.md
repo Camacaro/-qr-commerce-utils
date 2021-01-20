@@ -1,7 +1,7 @@
-# Switch Utils
+# Utils
 > All _schemas_ of **Utils** projects
 
-- [Switch Utils](#switch-utils)
+- [Utils](#utils)
 - [Getting started](#getting-started)
   - [Dependencies needed](#dependencies-needed)
   - [Usage format](#usage-format)
