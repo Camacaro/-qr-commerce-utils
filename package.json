@@ -1,13 +1,14 @@
 {
-  "name": "@qr-commerce/utils",
-  "version": "0.1.1",
+  "name": "@jcamacaro96/utils",
+  "version": "0.1.3",
   "description": "QR Commerce utils",
   "main": "dist/index.js",
   "scripts": {
     "build": "gulp",
     "audit": "npm audit",
     "lint": "eslint .",
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node index.js",
+    "publish": "npm publish --access public"
   },
   "pre-commit": [
     "lint",

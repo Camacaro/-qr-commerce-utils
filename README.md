@@ -45,14 +45,8 @@ import { Logger } from '@qr-commerce/utils';
 
 const logger = new Logger('NAME_CLASS');
 logger.info(`Log info`);
-logger.alert('Log alert')
-logger.critical('Log critical')
 logger.debug('Log debug')
-logger.emergency('Log emergency')
 logger.error('Log error')
-logger.info('Log info')
-logger.notice('Log notice')
-logger.warning('Log warning')
 ```
 
 
@@ -406,9 +400,7 @@ The [`yarn link`](https://classic.yarnpkg.com/en/docs/cli/link/) allows you to u
 # Build and Publishing
 To build this project, just run `gulp` and it will generate a new version of the code in the `dist/` path. For publish a new version make sure that you bump the version number in the `package.json` according [semantic version](https://semver.org). When you do this, just run `yarn publish` and make sure that you have the right credentials.
 
-# Tests
-_TODO_
-
-sudo npm link
-
-sudo npm link @qr-commerce/utils
+# Link Local
+`sudo npm link` 
+In the project to use
+`sudo npm link @qr-commerce/utils` 
