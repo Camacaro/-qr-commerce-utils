@@ -1,6 +1,6 @@
 {
   "name": "@jcamacaro96/utils",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "QR Commerce utils",
   "main": "dist/index.js",
   "scripts": {
