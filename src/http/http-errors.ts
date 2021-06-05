@@ -1,8 +1,5 @@
-/**
- * HTTP Error
- *
- */
-module.exports = {
+
+export const httpErros = {
   body: {
     description: 'Se ha producido un error al validar los parámetros del contrato de entrada del endpoint. Por favor, validar que todos los campos correspondan a los parámetros establecidos.',
     code: 'ERROR_DB_BODY'
@@ -47,4 +44,4 @@ module.exports = {
     description: 'Se ha producido un error al intentar obtener el registro, no se ha encontrado coincidencia con los criterios de búsqueda. Por favor, vuelve a intentarlo en unos momentos.',
     code: 'ERROR_DB_VIEW'
   }
-};
+}

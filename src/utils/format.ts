@@ -1,7 +1,8 @@
-import moment from 'moment';
+import moment from 'moment'
+import { Time } from '../constant/time'
 
-export const cleanCharacters = (string) => {
-  let clean = string;
+export const cleanCharacters = (string: string): string => {
+  let clean = string
   const replaces = [
     { character: 'À', value: 'A' },
     { character: 'Á', value: 'A' },
@@ -68,24 +69,23 @@ export const cleanCharacters = (string) => {
     { character: 'ý', value: 'y' },
     { character: 'ÿ', value: 'y' },
     { character: ' ', value: '+' }
-  ];
+  ]
   replaces.forEach((replace) => {
-    // eslint-disable-next-line security/detect-non-literal-regexp
-    const reg = new RegExp(replace.character, 'g');
-    clean = clean.replace(reg, replace.value);
-  });
-  return clean;
-};
+    const reg = new RegExp(replace.character, 'g')
+    clean = clean.replace(reg, replace.value)
+  })
+  return clean
+}
 
-export const dateFormat = (type) => {
+export const dateFormat = (type: Time): string => {
   switch (type) {
     case 'day':
-      return moment(new Date()).format('DD');
+      return moment(new Date()).format('DD')
     case 'month':
-      return moment(new Date()).format('MM');
+      return moment(new Date()).format('MM')
     case 'year':
-      return moment(new Date()).format('YYYY');
+      return moment(new Date()).format('YYYY')
     default:
+      return moment(new Date()).format('DD MM YYYY')
   }
-  return null;
-};
+}

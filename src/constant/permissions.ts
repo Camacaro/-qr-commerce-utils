@@ -1,4 +1,4 @@
-export default {
+export const permissions = {
   CREATE_PERMISISON: 'create-permission',
   UPDATE_PERMISISON: 'update-permission',
   DELETE_PERMISISON: 'delete-permission',
@@ -39,4 +39,4 @@ export default {
   SEND_PUSH_NOTIFICATION: 'SEND_PUSH_NOTIFICATION',
   READ_NOTIFICATION: 'READ_NOTIFICATION',
   SHUTDOWN_NOTIFICATION: 'SHUTDOWN_NOTIFICATION'
-};
+}

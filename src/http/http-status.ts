@@ -1,8 +1,5 @@
-/**
- * HTTP Status
- *
- */
-module.exports = {
+
+export const httpStatus = {
   100: {
     description: 'El navegador puede continuar realizando su petición (se utiliza para indicar que la primera parte de la petición del navegador se ha recibido correctamente).',
     message: 'Continue'
@@ -255,4 +252,4 @@ module.exports = {
     description: 'Este error prácticamente es inexistente en la red, pero indica que el servidor está en una operación de actualizado y no puede tener conexión.',
     message: 'Not updated'
   }
-};
+}
