@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import debug, { Debugger } from 'debug'
 import moment from 'moment'
 import winston, { Logger as LoggerWinton } from 'winston'
@@ -10,22 +11,29 @@ export class Logger {
   private readonly logError: Debugger
   private readonly createFile: LoggerWinton
 
-  constructor (nameFile: string) {
-    this.logDev = debug(`${'dev'}:${nameFile}`)
-    this.logProd = debug(`${'prod'}:${nameFile}`)
-    this.logError = debug(`${'error'}:${nameFile}`)
+  constructor (method: string) {
+    this.logDev = debug(`${'dev'}:${method}`)
+    this.logProd = debug(`${'prod'}:${method}`)
+    this.logError = debug(`${'error'}:${method}`)
 
     this.createFile = winston.createLogger({
-      format: winston.format.printf((info) => {
-        let message = `${moment().format('llll')} | ${info.level.toUpperCase()} | ${nameFile}.log | ${info.message}`
-        // message += info.obj ? `data:${JSON.stringify(info.obj)} | ` : ''
-        message += ''
-        return message
+      format: winston.format.printf((info: winston.Logform.TransformableInfo) => {
+        const level = info.level.toUpperCase()
+        const logTime = moment().format('dddd, MMMM D YYYY, h:mm:ss a')
+        const message = info.message
+        const lineLog = `${logTime} | ${level} | ${method} | ${message}`
+        return lineLog
       }),
       transports: [
-        // new winston.transports.Console(),
+        new winston.transports.Console({
+          format: winston.format.combine(winston.format.colorize(), winston.format.combine(
+            winston.format.colorize({
+              all: true
+            })
+          ))
+        }),
         new winston.transports.File({
-          filename: `./logs/${dateFormat(Time.YEAR)}/${dateFormat(Time.MONTH)}/${dateFormat(Time.DAY)}/${nameFile}.log`
+          filename: `./logs/${dateFormat(Time.YEAR)}-${dateFormat(Time.MONTH)}-${dateFormat(Time.DAY)}/tracking.log`
         })
       ]
     })
@@ -35,13 +43,18 @@ export class Logger {
     this.logDev(message)
   }
 
-  info (message: any): void {
-    this.logProd(message)
-    this.createFile.log('info', message)
+  info (message: string, payload: any = null): void {
+    let msg = message
+    if (payload) {
+      msg += ` ${JSON.stringify(payload, null, 4)}`
+    }
+
+    this.logProd(msg)
+    this.createFile.log('info', msg)
   }
 
   error (message: any): void {
     this.logError(message)
-    this.createFile.log('error', message)
+    this.createFile.log('error', message.stack || message)
   }
 }

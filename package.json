@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "audit": "npm audit",
-    "dev": "ts-node-dev app.example",
+    "dev": "ts-node-dev src/app.example",
     "lint": "ts-standard",
     "start": "node build/index.js",
     "build": "tsc",
