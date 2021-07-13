@@ -93,7 +93,7 @@ export const httpStatus = {
     message: 'Bad Request'
   },
   401: {
-    description: 'Similar al 403 Forbidden, pero específicamente para su uso cuando la autentificación es posible pero ha fallado o aún no ha sido provista.',
+    description: 'Es necesario autenticar para obtener la respuesta solicitada.',
     message: 'Unauthorized'
   },
   402: {
@@ -101,7 +101,7 @@ export const httpStatus = {
     message: 'Payment Required'
   },
   403: {
-    description: 'La solicitud fue legal, pero el servidor rehúsa responderla dado que el cliente no tiene los privilegios para hacerla. En contraste a una respuesta 401 No autorizado, la autenticación no haría la diferencia. ',
+    description: 'El cliente no posee los permisos necesarios para cierto contenido, por lo que el servidor está rechazando otorgar una respuesta apropiada.', // En contraste a una respuesta 401 No autorizado, la autenticación no haría la diferencia.
     message: 'Forbidden'
   },
   404: {
@@ -201,7 +201,7 @@ export const httpStatus = {
     message: 'Unavailable for Legal Reasons'
   },
   500: {
-    description: 'Es un código comúnmente emitido por aplicaciones empotradas en servidores web, mismas que generan contenido dinámicamente, por ejemplo aplicaciones montadas en IIS o Tomcat, cuando se encuentran con situaciones de error ajenas a la naturaleza del servidor web.',
+    description: 'El servidor ha encontrado una situación que no sabe cómo manejarla.', // Es un código comúnmente emitido por aplicaciones empotradas en servidores web, mismas que generan contenido dinámicamente, por ejemplo aplicaciones montadas en IIS o Tomcat, cuando se encuentran con situaciones de error ajenas a la naturaleza del servidor web.
     message: 'Internal Server Error'
   },
   501: {
