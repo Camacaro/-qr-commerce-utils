@@ -34,7 +34,7 @@ export class Logger {
     })
   }
 
-  debug (message: string, payload: any): void {
+  debug (message: string, payload?: any): void {
     this.createFile.log('debug', this.transformMsg(message, payload))
   }
 
