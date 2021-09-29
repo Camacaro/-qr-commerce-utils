@@ -6,6 +6,7 @@ import { dateFormat } from './format'
 
 export class Logger {
   private readonly createFile: LoggerWinton
+  private subMethod = ''
 
   constructor (
     method: string,
@@ -16,7 +17,8 @@ export class Logger {
         const level = info.level.toUpperCase()
         const logTime = moment().format('dddd, MMMM D YYYY, h:mm:ss a')
         const message = info.message
-        const lineLog = `${logTime} | ${level} | ${trackId} | ${method} | ${message}`
+        const methods = this.subMethod ? `${method} -> ${this.subMethod}` : `${method}`
+        const lineLog = `${logTime} | ${level} | ${trackId} | ${methods} | ${message}`
         return lineLog
       }),
       transports: [
@@ -44,6 +46,14 @@ export class Logger {
 
   error (message: any): void {
     this.createFile.log('error', message.stack || message)
+  }
+
+  addSubMethod (subMethod: string): void {
+    this.subMethod = subMethod
+  }
+
+  cleanSubMethod (): void {
+    this.subMethod = ''
   }
 
   private transformMsg (message: string, payload?: any): string {
