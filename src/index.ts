@@ -8,6 +8,9 @@ import { response, responseError, httpResponse } from './utils/response'
 
 const permission = permissions
 
+const logger = new Logger('@jcamacaro96/utils')
+logger.info('Module Utils ready')
+
 export {
   wait,
   Logger,
