@@ -45,7 +45,8 @@ export class Logger {
   }
 
   error (message: any): void {
-    this.createFile.log('error', message.stack || message)
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    this.createFile.log('error', `\n === STACK === \n ${message.stack} \n  === NAME === \n ${message.name} \n === MESSAGE === \n ${message.message}`)
   }
 
   addSubMethod (subMethod: string): void {
