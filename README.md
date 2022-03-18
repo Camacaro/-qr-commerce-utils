@@ -12,6 +12,7 @@
     - [response code 500](#response-code-500)
   - [Advanced use of the response](#advanced-use-of-the-response)
     - [StatusCode](#statuscode)
+    - [StatusError](#statuserror)
   - [Development](#development)
     - [Usage with `yarn link`](#usage-with-yarn-link)
 - [Build and Publishing](#build-and-publishing)
@@ -72,7 +73,7 @@ import { Logger, httpResponse, StatusError } from '@jcamacaro96/utils';
 export const create = async (req, res) => {
   const logger = new Logger('create');
   try {
-    logger.info('get models Cashier');
+    logger.info('get models');
 
     const { label } = req.body;
     logger.info('body received', req.body);
@@ -132,6 +133,7 @@ export const create = async (req, res) => {
     "payload": []
 }
 ```
+Default value for ``` payload ``` is empty array ```{ payload: [] }```
 
 ## Advanced use of the response
 You can track the request with a unique id. In your app you need to add a middleware and if you use other service to consume this service it can share the id for better tracking 
@@ -144,20 +146,20 @@ import { Logger, httpResponse, TRACK_ID_NAME } from '@jcamacaro96/utils';
 app = express()  
 
 app.use((req, res, next) => {
-      let log;
-      const reqTrackId = req.header(TRACK_ID_NAME);
-      if (reqTrackId) {
-        res.setHeader(TRACK_ID_NAME, reqTrackId);
-        log = new Logger('middleware', reqTrackId);
-      } else {
-        const trackId = short.generate();
-        res.setHeader(TRACK_ID_NAME, trackId);
-        log = new Logger('middleware', trackId);
-      }
-      log.info('init process to track');
-      log.info(`${req.method} ${req.path} ${req.protocol}/${req.httpVersion}`);
-      next();
-    });
+  let log;
+  const reqTrackId = req.header(TRACK_ID_NAME);
+  if (reqTrackId) {
+    res.setHeader(TRACK_ID_NAME, reqTrackId);
+    log = new Logger('middleware', reqTrackId);
+  } else {
+    const trackId = short.generate();
+    res.setHeader(TRACK_ID_NAME, trackId);
+    log = new Logger('middleware', trackId);
+  }
+  log.info('init process to track');
+  log.info(`${req.method} ${req.path} ${req.protocol}/${req.httpVersion}`);
+  next();
+});
 ```
 ```js
 Thursday, February 24 2022, 10:33:50 am | INFO | m8EZQAwvkxHxDYeqAi714m | middleware | init process to track
@@ -173,7 +175,7 @@ export const create = async (req, res) => {
   const trackId = res.get(TRACK_ID_NAME);    
   const logger = new Logger('create', trackId);
   try {
-    logger.info('get models Cashier');
+    logger.info('get models');
 
     const { label } = req.body;
     logger.info('body received', req.body);
@@ -197,7 +199,7 @@ export const create = async (req, res) => {
 ```
 Log
 ```js
-Thursday, February 24 2022, 10:33:50 am | INFO | m8EZQAwvkxHxDYeqAi714m | create | get models Cashier
+Thursday, February 24 2022, 10:33:50 am | INFO | m8EZQAwvkxHxDYeqAi714m | create | get models
 Thursday, February 24 2022, 10:33:50 am | INFO | m8EZQAwvkxHxDYeqAi714m | create | body received { label: 'NAME' }
 ```
 In your client you can get the track id of the request in the headers ``` Track-Id ``` and check all its tracking
@@ -456,6 +458,58 @@ In your client you can get the track id of the request in the headers ``` Track-
     description: 'Este error prácticamente es inexistente en la red, pero indica que el servidor está en una operación de actualizado y no puede tener conexión.',
     message: 'Not updated'
   }
+```
+
+### StatusError
+```js
+ERROR_DB_BODY: {
+  description: 'Se ha producido un error al validar los parámetros del contrato de entrada del endpoint. Por favor, validar que todos los campos correspondan a los parámetros establecidos.',
+  code: 'ERROR_DB_BODY'
+},
+ERROR_DB_CREATE: {
+  description: 'Se ha producido un error al intentar crear el registro. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_CREATE'
+},
+ERROR_DB_LIST: {
+  description: 'Se ha producido un error al intentar obtener los registros. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_LIST'
+},
+ERROR_SENDGRID_MAIL: {
+  description: 'Se ha producido un error al intentar enviar el mensaje por correo electrónico. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_SENDGRID_MAIL'
+},
+ERROR_DB_ME: {
+  description: 'Se ha producido un error al intentar obtener los datos de su cuenta de usuario. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_ME'
+},
+ERROR_GOOGLE_MAPS_GEOCODING: {
+  description: 'Se ha producido un error al intentar normalizar los datos de la dirección. Por favor, vuelva a intentarlo en unos momentos.',
+  code: 'ERROR_GOOGLE_MAPS_GEOCODING'
+},
+ERROR_DB_REMOVE: {
+  description: 'Se ha producido un error al intentar eliminar el registro, no se ha encontrado coincidencia con los criterios de búsqueda. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_REMOVE'
+},
+ERROR_DB_SECURITY_RESET: {
+  description: 'Se ha producido un error al intentar reiniciar las credenciales de acceso. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_SECURITY'
+},
+ERROR_DB_UPDATE: {
+  description: 'Se ha producido un error al intentar actualizar el registro, no se ha encontrado coincidencia con los criterios de búsqueda. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_UPDATE'
+},
+ERROR_DB_SECURITY_VALIDATE: {
+  description: 'Se ha producido un error al intentar validar su cuenta de usuario. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_SECURITY'
+},
+ERROR_DB_VIEW: {
+  description: 'Se ha producido un error al intentar obtener el registro, no se ha encontrado coincidencia con los criterios de búsqueda. Por favor, vuelve a intentarlo en unos momentos.',
+  code: 'ERROR_DB_VIEW'
+},
+ERROR_DB_REGISTERED: {
+  description: 'Ya existe un registro con los datos enviados',
+  code: 'ERROR_DB_REGISTERED'
+}
 ```
 
 ## Development
